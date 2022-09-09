@@ -37,6 +37,7 @@ Repository installation:
   roles:
     - role: pulse_client
       pulse_filename: https://simone.giertz.dev/foobar/pulsesecure_13.17.rpm
+```
 
 ## Development / Testing
 
