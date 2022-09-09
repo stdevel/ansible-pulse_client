@@ -26,7 +26,7 @@ Local file installation:
 ```yaml
 - hosts: clients
   roles:
-    - role: pulse_client
+    - role: stdevel.pulse_client
       pulse_filename: pulsesecure_9.1.R13_amd64.deb
 ```
 
@@ -35,7 +35,7 @@ Repository installation:
 ```yaml
 - hosts: clients
   roles:
-    - role: pulse_client
+    - role: stdevel.pulse_client
       pulse_filename: https://simone.giertz.dev/foobar/pulsesecure_13.17.rpm
 ```
 
