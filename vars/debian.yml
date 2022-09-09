@@ -1,6 +1,7 @@
 ---
-pulse_filename: 'https://webdev.web3.technion.ac.il/docs/cis/public/ssl-vpn/v.22.2R1.0/ps-pulse-linux-22.2r1.0-b1295-64bit-installer.deb'
+pulse_filename: 'https://dreckstools.cstan.io/pulsesecure-latest.deb'
 # alternate sites:
+# - https://webdev.web3.technion.ac.il/docs/cis/public/ssl-vpn/v.22.2R1.0/ps-pulse-linux-22.2r1.0-b1295-64bit-installer.deb
 # - https://www.rz-cms.uni-osnabrueck.de/dienste/vpn/pulsesecure_vpn.html#Anchor3db
 # - https://vubnet.vub.ac.be/downloads.html
 
