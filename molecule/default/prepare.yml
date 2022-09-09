@@ -1,0 +1,24 @@
+---
+- name: Prepare hosts
+  hosts: all
+  become: true
+  pre_tasks:
+    - name: Update APT cache
+      apt:
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
+    - name: Enable EPEL repository
+      yum:
+        name: epel-release
+      when:
+        - ansible_os_family == 'RedHat'
+        - ansible_distribution_major_version in ['7', '8', '9']
+
+  roles:
+    - role: alvistack.gnome_desktop
+
+  post_tasks:
+    - name: Set German keyboard layout
+      command: gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'de')]"
+      become: false

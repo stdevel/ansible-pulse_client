@@ -1,0 +1,4 @@
+---
+roles:
+  - name: alvistack.gnome_desktop
+    version: 6.3.1

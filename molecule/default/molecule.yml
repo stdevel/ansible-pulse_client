@@ -1,0 +1,44 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: vagrant
+platforms:
+  - name: debian-11
+    box: generic/debian11
+    cpus: 1
+    memory: 2048
+    provider_raw_config_args:
+      - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+
+  - name: ubuntu-2204
+    box: generic/ubuntu2204
+    cpus: 1
+    memory: 2048
+    provider_raw_config_args:
+      - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+
+  - name: almalinux-9
+    box: almalinux/9
+    cpus: 1
+    memory: 2048
+    provider_raw_config_args:
+      - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+
+  - name: fedora-36
+    box: generic/fedora36
+    cpus: 1
+    memory: 2048
+    provider_raw_config_args:
+      - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra
+lint: |
+  yamllint .
+  ansible-lint
+  flake8

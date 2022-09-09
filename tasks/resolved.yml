@@ -1,0 +1,24 @@
+---
+- name: Disable and mask systemd-resolved
+  systemd:
+    name: systemd-resolved
+    state: stopped
+    masked: true
+    enabled: false
+  become: true
+  notify: Reset /etc/resolv.conf
+
+- name: Set configuration file options
+  lineinfile:
+    path: "{{ item.file }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    backup: true
+  become: true
+  loop:
+    - file: /etc/resolv.conf
+      regexp: 'single-request-reopen'
+      line: ''
+    - file: /etc/nsswitch.conf
+      regexp: '^hosts:'
+      line: 'hosts: files myhostname resolve dns'
