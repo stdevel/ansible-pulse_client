@@ -4,9 +4,7 @@
 
 - name: Install required dependencies
   package:
-    name:
-      - tar
-      - bzip2
+    name: "{{ pulse_dependencies }}"
   become: true
 
 - name: Include installation tasks

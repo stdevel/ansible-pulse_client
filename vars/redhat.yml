@@ -1,4 +1,10 @@
 ---
+pulse_dependencies:
+  - tar
+  - bzip2
+  - bind-utils
+  - perl-Digest-SHA1
+
 pulse_filename: 'https://dreckstools.cstan.io/pulsesecure-latest.rpm'
 # alternate sites:
 # - https://webdev.web3.technion.ac.il/docs/cis/public/ssl-vpn/v.22.2R1.0/ps-pulse-linux-22.2r1.0-b1295-64bit-installer.rpm
