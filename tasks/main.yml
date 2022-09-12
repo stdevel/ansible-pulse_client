@@ -13,12 +13,13 @@
 - name: Check running services
   service_facts:
   register: running_services
+  become: true
 
 - name: Disable systemd-resolved (not supported by Pulse Secure)
   include_tasks: resolved.yml
   when:
-    - running_services['ansible_facts']['services']['systemd-resolved'] is defined
-    - running_services['ansible_facts']['services']['systemd-resolved']['state'] == "started"
+    - running_services['ansible_facts']['services']['systemd-resolved.service'] is defined
+    - running_services['ansible_facts']['services']['systemd-resolved.service']['state'] == "running"
 
 - name: Download Chrome Embedded Browser
   command: /opt/pulsesecure/bin/setup_cef.sh install
