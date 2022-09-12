@@ -6,7 +6,10 @@
     masked: true
     enabled: false
   become: true
-  notify: Reset /etc/resolv.conf
+  notify: Reset resolv.conf
+
+- name: "Flush handlers"
+  meta: flush_handlers
 
 - name: Set configuration file options
   lineinfile:

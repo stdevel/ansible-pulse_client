@@ -1,0 +1,27 @@
+---
+- name: Reset resolv.conf
+  block:
+    - name: Remove /etc/resolv.conf (could be a symlink)
+      file:
+        path: /etc/resolv.conf
+        state: absent
+
+    - name: Copy last systemd-resolved resolv.conf stub
+      copy:
+        src: /run/systemd/resolve/resolv.conf
+        dest: /etc/resolv.conf
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Remove systemd-resolved comments
+      lineinfile:
+        path: /etc/resolv.conf
+        regexp: '^# '
+        state: absent
+
+    - name: Restart network
+      systemd:
+        name: "{{ pulse_os_network_service }}"
+        state: restarted
+  become: true

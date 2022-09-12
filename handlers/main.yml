@@ -1,20 +1,3 @@
 ---
-- name: Reset /etc/resolv.conf
-  block:
-    - name: Remove /etc/resolv.conf (could be a symlink)
-      file:
-        path: /etc/resolv.conf
-        state: absent
-
-    - name: Create empty /etc/resolv.conf
-      file:
-        path: /etc/resolv.conf
-        owner: root
-        group: root
-        mode: '0644'
-
-    - name: Restart network
-      systemd:
-        name: "{{ pulse_os_network_service }}"
-        state: restarted
-  become: true
+- name: Reset resolv.conf
+  include_tasks: tasks/reset_resolv.yml
