@@ -3,7 +3,7 @@ pulse_dependencies:
   - tar
   - bzip2
   - bind-utils
-  - perl-Digest-SHA1
+  - perl-Digest-SHA
 
 pulse_filename: 'https://dreckstools.cstan.io/pulsesecure-latest.rpm'
 # alternate sites:
