@@ -34,8 +34,8 @@ platforms:
     provider_raw_config_args:
       - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
 
-  - name: pulse-opensuse_tumbleweed
-    box: opensuse/Tumbleweed.x86_64
+  - name: pulse-opensuse-leap
+    box: opensuse/Leap-15.5.x86_64
     cpus: 1
     memory: 2048
     provider_raw_config_args:
