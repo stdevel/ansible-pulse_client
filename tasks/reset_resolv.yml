@@ -3,12 +3,12 @@
   become: true
   block:
     - name: Remove /etc/resolv.conf (could be a symlink)
-      file:
+      ansible.builtin.file:
         path: /etc/resolv.conf
         state: absent
 
     - name: Copy last systemd-resolved resolv.conf stub
-      copy:
+      ansible.builtin.copy:
         src: /run/systemd/resolve/resolv.conf
         dest: /etc/resolv.conf
         owner: root
@@ -16,12 +16,12 @@
         mode: '0644'
 
     - name: Remove systemd-resolved comments
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /etc/resolv.conf
         regexp: '^# '
         state: absent
 
     - name: Restart network
-      systemd:
+      ansible.builtin.systemd:
         name: "{{ pulse_os_network_service }}"
         state: restarted

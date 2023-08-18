@@ -1,6 +1,6 @@
 ---
 - name: Install package
-  apt:
+  ansible.builtin.apt:
     deb: "{{ pulse_filename }}"
     update_cache: true
   become: true
