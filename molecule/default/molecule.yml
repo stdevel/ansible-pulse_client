@@ -34,6 +34,13 @@ platforms:
     provider_raw_config_args:
       - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
 
+  - name: pulse-opensuse_tumbleweed
+    box: opensuse/Tumbleweed.x86_64
+    cpus: 1
+    memory: 2048
+    provider_raw_config_args:
+      - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+
 provisioner:
   name: ansible
 verifier:
