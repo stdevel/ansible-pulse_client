@@ -1,5 +1,6 @@
 ---
 - name: Reset resolv.conf
+  become: true
   block:
     - name: Remove /etc/resolv.conf (could be a symlink)
       file:
@@ -24,4 +25,3 @@
       systemd:
         name: "{{ pulse_os_network_service }}"
         state: restarted
-  become: true

@@ -3,4 +3,4 @@
   hosts: all
 
   roles:
-    - role: ansible-pulse_client
+    - role: stdevel.pulse_client
