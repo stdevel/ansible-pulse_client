@@ -1,6 +1,6 @@
 ---
 - name: Disable and mask systemd-resolved
-  systemd:
+  ansible.builtin.systemd:
     name: systemd-resolved
     state: stopped
     masked: true
@@ -9,10 +9,10 @@
   notify: Reset resolv.conf
 
 - name: "Flush handlers"
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Set configuration file options
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ item.file }}"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"

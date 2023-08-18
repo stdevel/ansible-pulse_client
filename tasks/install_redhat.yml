@@ -1,18 +1,18 @@
 ---
 - name: Check if EPEL repository is enabled
+  when: ansible_distribution_major_version in ['7', '8', '9']
   block:
     - name: Check YUM repos
-      command: yum repolist
+      ansible.builtin.command: yum repolist
       changed_when: false
       register: yumrepo
     - name: Abort if EPEL not found
-      fail:
+      ansible.builtin.fail:
         msg: EPEL repository not found (required for dependencies)
       when: "'epel' not in yumrepo.stdout"
-  when: ansible_distribution_major_version in ['7', '8', '9']
 
 - name: Install packages
-  yum:
+  ansible.builtin.yum:
     name:
       - "{{ pulse_filename }}"
     disable_gpg_check: true

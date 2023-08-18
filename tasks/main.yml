@@ -1,28 +1,28 @@
 ---
 - name: Include distribution-specific variables
-  include_vars: "{{ ansible_os_family | regex_replace(' ', '_') | lower }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_os_family | regex_replace(' ', '_') | lower }}.yml"
 
 - name: Install required dependencies
-  package:
+  ansible.builtin.package:
     name: "{{ pulse_dependencies }}"
   become: true
 
 - name: Include installation tasks
-  include_tasks: "install_{{ ansible_os_family | regex_replace(' ', '_') | lower }}.yml"
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family | regex_replace(' ', '_') | lower }}.yml"
 
 - name: Check running services
-  service_facts:
+  ansible.builtin.service_facts:
   register: running_services
   become: true
 
 - name: Disable systemd-resolved (not supported by Pulse Secure)
-  include_tasks: resolved.yml
+  ansible.builtin.include_tasks: resolved.yml
   when:
     - running_services['ansible_facts']['services']['systemd-resolved.service'] is defined
     - running_services['ansible_facts']['services']['systemd-resolved.service']['state'] == "running"
 
 - name: Download Chrome Embedded Browser
-  command: /opt/pulsesecure/bin/setup_cef.sh install
+  ansible.builtin.command: /opt/pulsesecure/bin/setup_cef.sh install
   args:
     creates: /opt/pulsesecure/lib/cefRuntime/Resources/libcef.so
   become: true

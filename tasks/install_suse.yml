@@ -1,0 +1,13 @@
+---
+# this is very ugly as Ivanti builds very ugly RPM packages
+# you have been warned ¯\_(ツ)_/¯
+- name: Install packages
+  ansible.builtin.command: "rpm -ivh --nodeps {{ pulse_filename }}"
+  register: rpmout
+  changed_when:
+    - "'Updating / installing' in rpmout.stdout"
+  failed_when:
+    - rpmout.failed
+    - "'is already installed' not in rpmout.stderr"
+  ignore_errors: true
+  become: true
