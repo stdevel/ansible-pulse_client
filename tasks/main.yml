@@ -15,12 +15,6 @@
   register: running_services
   become: true
 
-- name: Disable systemd-resolved (not supported by Pulse Secure)
-  ansible.builtin.include_tasks: resolved.yml
-  when:
-    - running_services['ansible_facts']['services']['systemd-resolved.service'] is defined
-    - running_services['ansible_facts']['services']['systemd-resolved.service']['state'] == "running"
-
 - name: Download Chrome Embedded Browser
   ansible.builtin.command: /opt/pulsesecure/bin/setup_cef.sh install
   args:
