@@ -1,4 +1,4 @@
 ---
 roles:
   - name: alvistack.gnome_desktop
-    version: 8.2.2
+    version: 11.1.0

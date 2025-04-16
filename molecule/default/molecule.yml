@@ -7,36 +7,36 @@ driver:
   name: vagrant
 platforms:
   - name: pulse-debian12
-    box: generic/debian12
-    cpus: 1
+    box: debian/bookworm64
+    cpus: 2
     memory: 2048
     provider_raw_config_args:
       - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
 
-  - name: pulse-ubuntu2204
-    box: generic/ubuntu2204
-    cpus: 1
+  - name: pulse-ubuntu2404
+    box: bento/ubuntu-24.04
+    cpus: 2
     memory: 2048
     provider_raw_config_args:
       - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
 
   - name: pulse-almalinux9
     box: almalinux/9
-    cpus: 1
+    cpus: 2
     memory: 2048
     provider_raw_config_args:
       - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
 
-  - name: pulse-fedora38
-    box: generic/fedora38
-    cpus: 1
+  - name: pulse-fedora41
+    box: fedora/41-cloud-base
+    cpus: 2
     memory: 2048
     provider_raw_config_args:
       - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
 
   - name: pulse-opensuse-leap
-    box: opensuse/Leap-15.5.x86_64
-    cpus: 1
+    box: opensuse/Leap-15.6.x86_64
+    cpus: 2
     memory: 2048
     provider_raw_config_args:
       - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
