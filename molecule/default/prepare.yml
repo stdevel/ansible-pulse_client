@@ -8,6 +8,11 @@
         update_cache: true
       when: ansible_os_family == 'Debian'
 
+    - name: Install requirements (Red Hat)
+      ansible.builtin.raw: dnf install -y python3-libdnf5
+      when:
+        - ansible_distribution == 'Fedora'
+
     - name: Enable EPEL repository
       ansible.builtin.yum:
         name: epel-release
