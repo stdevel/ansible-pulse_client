@@ -28,7 +28,7 @@ platforms:
       - customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
 
   - name: pulse-fedora41
-    box: fedora/41-cloud-base
+    box:  bento/fedora-41
     cpus: 2
     memory: 2048
     provider_raw_config_args:
