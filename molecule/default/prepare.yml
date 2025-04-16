@@ -4,12 +4,12 @@
   become: true
   pre_tasks:
     - name: Update APT cache
-      apt:
+      ansible.builtin.apt:
         update_cache: true
       when: ansible_os_family == 'Debian'
 
     - name: Enable EPEL repository
-      yum:
+      ansible.builtin.yum:
         name: epel-release
       when:
         - ansible_os_family == 'RedHat'
@@ -20,5 +20,5 @@
 
   post_tasks:
     - name: Set German keyboard layout
-      command: gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'de')]"
+      ansible.builtin.command: gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'de')]"
       become: false
