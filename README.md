@@ -11,7 +11,6 @@ No requirements.
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
 | `pulse_filename` | *some government site* | Package file to install |
-| `pulse_os_network_service` | *preset, see [vars/*.yml](vars/)* | Network service (e.g. `NetworkManager`), required for `systemd-resolved` incompatibility |
 
 Check-out the [vars/*.yml](vars/) files - there is a list of alternate download sites.
 
