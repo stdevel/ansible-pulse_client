@@ -4,3 +4,4 @@
 
   roles:
     - role: stdevel.pulse_client
+      pulse_ubuntu_workaround: true

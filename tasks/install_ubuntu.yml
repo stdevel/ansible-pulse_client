@@ -1,0 +1,29 @@
+---
+- name: Enable some Ubuntu 22.04 repositories (workaround for some missing libraries)
+  ansible.builtin.apt_repository:
+    repo: "{{ item }}"
+  loop:
+    - deb http://archive.ubuntu.com/ubuntu/ focal-security main
+    - deb http://archive.ubuntu.com/ubuntu/ focal main
+  become: true
+  when:
+    - pulse_ubuntu_workaround
+    - ansible_distribution_version is version('22.04', '>')
+
+- name: Install package
+  ansible.builtin.apt:
+    deb: "{{ pulse_filename }}"
+    update_cache: true
+  become: true
+
+- name: Disable Ubuntu 22.04 repositories again
+  ansible.builtin.apt_repository:
+    repo: "{{ item }}"
+    state: absent
+  loop:
+    - deb http://archive.ubuntu.com/ubuntu/ focal-security main
+    - deb http://archive.ubuntu.com/ubuntu/ focal main
+  become: true
+  when:
+    - pulse_ubuntu_workaround
+    - ansible_distribution_version is version('22.04', '>')

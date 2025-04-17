@@ -8,7 +8,16 @@
   become: true
 
 - name: Include installation tasks
-  ansible.builtin.include_tasks: "install_{{ ansible_os_family | regex_replace(' ', '_') | lower }}.yml"
+  ansible.builtin.include_tasks: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "install_{{ ansible_distribution | regex_replace(' ', '_') | lower }}-{{ ansible_distribution_version }}.yml"
+        - "install_{{ ansible_distribution | regex_replace(' ', '_') | lower }}.yml"
+        - "install_{{ ansible_os_family | regex_replace(' ', '_') | lower }}.yml"
+        - main.yml
+      paths:
+        - tasks
 
 - name: Check running services
   ansible.builtin.service_facts:
